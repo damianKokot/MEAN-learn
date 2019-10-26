@@ -27,7 +27,6 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
 	<script>
-		//Utworzenie modułu app
 		let app = angular.module('app', []);
 		app.controller('PostCtrl', function ($scope) {
 			$scope.addPost = function (){
@@ -39,7 +38,6 @@
 					$scope.postBody = null;
 				}
 			};
-			//Dane początkowe
 			$scope.posts = [
 				{
 					username: 'dickeyxxx',
