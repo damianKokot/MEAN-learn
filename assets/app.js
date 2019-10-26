@@ -1,9 +1,18 @@
 let app = angular.module('app', []);
 
-app.controller('PostsCtrl', function ($scope, $http) {
+app.service('PostsSvc', function($http) {
+	this.fetch = function () {
+		return $http.get('/api/posts');
+	}
+	this.create = function(post) {
+		return $http.post('/api/posts', post);
+	}
+});
+
+app.controller('PostsCtrl', function ($scope, PostsSvc) {
 	$scope.addPost = function (){
 		if($scope.postBody){
-			$http.post('/api/posts', {
+			PostsSvc.create({
 				username: 'dickeyxxx',
 				body: $scope.postBody	
 			}).success((post)=>{
@@ -12,7 +21,7 @@ app.controller('PostsCtrl', function ($scope, $http) {
 			})
 		}
 	};
-	$http.get('/api/posts').success((posts) => {
+	PostsSvc.fetch().success((posts) => {
 		$scope.posts = posts;
 	});
 });
