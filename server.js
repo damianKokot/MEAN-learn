@@ -5,13 +5,16 @@ let Post = require('./models/post');
 let app = express();
 app.use(bodyParser.json());
 
-app.get('/api/posts', (req, res) => {
-	res.json([
-		{
-			username: 'dickeyxxx',
-			body: 'NodeJS wymiata!'
-		}
-	]);
+app.get('/', (req,res) => {
+	res.sendfile('layouts/posts.html');
+});
+app.get('/api/posts', (req, res, next) => {
+	Post.find()
+	.sort('-date')
+	.exec((err, posts) => {
+		if(err) { return next(err); }
+		res.json(posts);
+	});
 });
 app.post('/api/posts', (req, res) => {
 	let post = new Post({
