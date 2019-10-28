@@ -5,13 +5,13 @@ angular.module('app')
 			PostsSvc.create({
 				username: 'dickeyxxx',
 				body: $scope.postBody	
-			}).success((post)=>{
+			}).success(function(post){
 				$scope.posts.unshift(post);
 				$scope.postBody = null;
 			})
 		}
 	};
-	PostsSvc.fetch().success((posts) => {
+	PostsSvc.fetch().success(function(posts) {
 		$scope.posts = posts;
 	});
 });

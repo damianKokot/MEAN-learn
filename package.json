@@ -5,7 +5,14 @@
 		"express": "^4.17.1",
 		"gulp": "^4.0.2",
 		"gulp-concat": "^2.6.1",
+		"gulp-ng-annotate": "^2.1.0",
+		"gulp-nodemon": "^2.4.2",
+		"gulp-sourcemaps": "^2.6.5",
+		"gulp-stylus": "^2.7.0",
 		"mongoose": "^5.7.7",
 		"nodemon": "^1.19.4"
+	},
+	"devDependencies": {
+		"gulp-uglify-es": "^2.0.0"
 	}
 }

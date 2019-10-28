@@ -1,8 +1,8 @@
+let fs = require('fs');
 let gulp = require('gulp');
-let concat = require('gulp-concat');
 
-gulp.task('js', () => {
-	gulp.src(['ng/module.js'], 'ng/**/*.js')
-		.pipe(concat('app.js'))
-		.pipe(gulp.dest('assets'));
+fs.readdirSync(__dirname + '/gulp').forEach(function(task){
+	require('./gulp/' + task);
 });
+
+gulp.task('dev', gulp.parallel('watch:css', 'watch:js', 'dev:server'));
