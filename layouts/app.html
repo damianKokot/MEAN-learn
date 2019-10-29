@@ -15,6 +15,9 @@
 			<p ng-if='currentUser' class="navbar-text navbar-right">
 				Zalogowany jako: {{currentUser.username}}
 			</p>
+			<div ng-if='currentUser' class="navbar-btn navbar-right">
+				<button ng-click="logout()" class="btn btn-warning">Wyloguj</button>
+			</div>
 		</div>
 	</nav>
 
