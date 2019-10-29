@@ -1,1 +1,3 @@
-let app = angular.module('app', []);
+let app = angular.module('app', [
+		'ngRoute'
+	]);
