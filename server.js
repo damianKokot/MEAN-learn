@@ -1,5 +1,6 @@
-let express = require('express');
-let bodyParser = require('body-parser');
+const express = require('express');
+const bodyParser = require('body-parser');
+const ws = require('./websockets');
 
 let app = express();
 app.use(bodyParser.json());
@@ -10,6 +11,7 @@ app.use('/api/sessions', require('./controllers/api/sessions'));
 app.use('/api/users', require('./controllers/api/users'));
 
 
-app.listen(3000, function () {
+const server = app.listen(3000, function () {
 	console.log('Server is listening on: ', 3000);
 });
+ws.connect(server);

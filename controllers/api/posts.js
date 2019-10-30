@@ -1,7 +1,8 @@
-var Post = require('../../models/post');
-var router = require('express').Router();
+const Post = require('../../models/post');
+const router = require('express').Router();
+const websockets = require('../../websockets');
 
-router.get('/', function (req, res, next){
+router.get('/', (req, res, next) => {
 	Post.find()
 	.sort('-date')
 	.exec((err, posts)=>{
@@ -9,11 +10,12 @@ router.get('/', function (req, res, next){
 		res.json(posts)
 	})
 });
-router.post('/', function(req, res, next) {
-	var post = new Post({body: req.body.body});
+router.post('/', (req, res, next) => {
+	const post = new Post({body: req.body.body});
 	post.username = req.auth.username;
 	post.save(function (err, post){
 		if (err) { return next(err) }
+		websockets.broadcast('new_post', post)
 		res.json(201, post);
 	})
 });	
